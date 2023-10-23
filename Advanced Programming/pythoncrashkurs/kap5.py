@@ -1064,8 +1064,10 @@ print({'Padres', 'Yankees'} <= baseball_teams)
 
 month_numbers = {'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5,
                  1:'Jan', 2:'Feb', 3:'Mar', 4:'Apr', 5:'May'}
+
+
 print(month_numbers)
-print('Der dritte Monat ist ' + month_numbers[3])
+print(f'Der dritte Monat ist {month_numbers[3]}')
 dist = month_numbers['Apr'] - month_numbers['Jan']
 print('Apr und Jan liegen', dist, 'Monate auseinander')
 
@@ -1264,14 +1266,26 @@ for key, val in capitals.items():
 #Aufgabe 5.7.a:
 ############### 
 #Implementieren Sie eine Funktion, die folgender Spezifikation entspricht
+d={'a':12,'b':-10,'c':25,'2':14}
+
+
 def get_min(d):
- """d a dict mapping letters to ints returns the value in d 
+    """d a dict mapping letters to ints returns the value in d 
     with the key that occurs first in the alphabet. 
     E.g., if d = {x = 11, b = 12}, get_min returns 12."""
 ###############
+    
+    type('a')                #str
+    d = {'x': 11, 'b': 12}
+    'a' < 'b'                #True
+    min('c','a','b')         #'a'
+    min(d.keys())            #'b
+    d[min(d.keys())]         #12
+    
+    def get_min(d):
+        return d[min(d.keys())]
 
-
-
+print(get_min(d))        #12
 #Oft ist es praktisch, Tupel als Schlüssel zu verwenden. Stellen Sie sich zum Beispiel vor,
 #ein Tupel der Form (flight_number, day) zu verwenden, um Flüge einer Fluggesellschaft zu
 #repräsentieren. Es wäre dann einfach, solche Tupel als Schlüssel in einem dictionary zu 
@@ -1384,7 +1398,7 @@ gen_code_keys(Don_Quixote, "no is no")
 #der list comprehension eine Funktion encoder definieren, die ein Kodierungswörterbuch zur 
 #Verschlüsselung eines einfachen Textes verwendet
 
-encoder = lambda code_keys, plain_text:''.join(['*' + code_keys[c] for c in plain_text])[1:]
+encoder = lambda code_keys, plain_text:''.join(['*' + code_keys[c] for c in plain_text])[1:] #[1:0] --> Damit es nicht ,it * anfängt 
 
 #Da Zeichen im Klartext durch mehrere Zeichen im verschlüsselten Text ersetzt werden können, 
 #verwenden wir *, um die Zeichen im verschlüsselten Text (dem Chiffriertext) zu trennen. 
@@ -1398,7 +1412,7 @@ encrypt = lambda book, plain_text:encoder(gen_code_keys(book, plain_text), plain
 
 #Der Aufruf 
 
-encrypt(Don_Quixote, 'no is no') 
+encrypt(Don_Quixote, 'hello was geht ab?') 
 
 #liefert dann den verschlüsselten Text
 #     '1*13*2*6*57*2*1*13'
@@ -1424,7 +1438,7 @@ gen_decode_keys = lambda book, cipher_text: {s: book[int(s)] for s in cipher_tex
 
 #Der Aufruf 
 
-gen_decode_keys(Don_Quixote, '1*13*2*6*57*2*1*13')
+gen_decode_keys(Don_Quixote, '23*11*7*7*13*2*39*3*57*2*10*11*23*27*2*3*209*-1')
 
 #erzeugt dann folgenden Dekodierungssschlüssel
 #    {'1': 'n', '13': 'o', '2': ' ', '6': 'i', '57': 's'}
