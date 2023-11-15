@@ -1,0 +1,146 @@
+tw, 4.3.2023
+-------------
+
+============================================================
+============================================================
+Planung und Infos zur LV --- AdvProg___DSKI-Überbrückung ---
+============================================================
+============================================================
+
+
+===================
+I - INFRASTRUKTUR
+===================
+
+
+Das ganze Zeug befindet sich hier:
+C:\Users\thwng\OneDrive - hochschule-stralsund.de\tw-python\AdvProg___DSKI-Überbrückung
+
+
+
+Mit conda im PowerShellPrompt (PSP): 
+------------------------------------
+
+- Direkt nach dem Start des PSP befindet man sich im base-Environment.
+  Von hier aus kann man conda selbst auf den neuesten stand bringen:
+
+     conda update conda
+
+- Wir erzeugen nun ein neues, virtuelles Environment mit dem Namen dski_propaedeutikum
+  
+     conda create --name dski_propaedeutikum python=3.10
+
+  ich verwende für dieses Environment die Python-Version 3.10,
+  da neuere Versionen (z.B. 3.11) z.Zt. (Stand: 27.2.23) von anaconda 
+  noch nicht unterstützt werden.
+
+- dieses neue Environment aktivieren:
+       conda activate dski_propaedeutikum
+
+- so sieht der PSP dann aus:
+       => (dski_propaedeutikum) PS C:\Users\thwng>
+
+- man kann sich auch mal ansehen, welche packages in diesem Environment
+  nun bereits verfügbar sind:
+
+      conda list
+
+
+
+Dann in VSCODE:
+---------------
+
+Benötigte Extensions (einfach im Suchfeld bei "Extensions" eingeben):
+    Python   (und install)    <---- das ist die offizielle Extension von MS für Python !!
+    Community Material Theme   (und install)   <---- optional
+
+Mit der Python-Extension (s.o.) sind automatisch weitere Extensions installiert worden.
+Eine davon heißt "Jupyter".
+In den Settings dieser Jupyter-Extension bei folgendem Eintrag einen Haken setzen:
+          Jupyter › Interactive Window › Text Editor: Execute Selection
+
+Dann
+Open Folder: AdvProg___DSKI-Überbrückung
+ 
+Dann im Explorer neue Python-Datei erzeugen: dski_propaedeutikum.py
+
+Python-Interpreter (Environment) auswählen: dski_propaedeutikum
+
+Im Editor (dski_propaedeutikum.py) versuchsweise einen Dummy-Python-Ausdruck (z.B. 1+1)
+auswerten (<shift>+<enter>):
+     das schlägt fehl mit der Meldung 
+     "Running cells with 'dski_propaedeutikum' requires the ipykernel package"
+     Weitere Infos zu dieser Meldung findet man hier:
+     https://github.com/microsoft/vscode-jupyter/wiki/Jupyter-Kernels-and-the-Jupyter-Extension#python-extension-and-ipykernel
+
+Im interactive window kommt auch eine weitere Meldung, die beschreibt, 
+wie man das mit conda installiert: 
+     'conda install -n dski_propaedeutikum ipykernel --update-deps --force-reinstall'
+
+
+
+Nochmal mit conda im PowerShellPrompt (PSP): 
+--------------------------------------------
+
+im PSP ist immer noch das dski_propaedeutikum Environment aktiv und
+wir führen den obigen, von vscode vorgeschlagenen Befehl einfach aus.
+Da wir uns im besagten Environement befinden, ist die Spezifikation 
+"-n dski_propaedeutikum" nicht wirklich nötig, aber schaden tut's auch nicht:
+
+     conda install -n dski_propaedeutikum ipykernel --update-deps --force-reinstall
+
+und da wir schon mal dabei sind, installieren wir auch schon numpy und matplotlib:
+
+     conda install numpy
+     conda install matplotlib
+     conda install scikit-learn
+
+die Liste der nun verfügbaren packages in diesem Environment ansehen:
+
+     conda list
+
+und die Liste aller bereits erzeugten Environments bekommt man so:
+
+     conda env list
+
+
+
+Wieder zurück zu VSCODE:
+------------------------
+
+das interactive window des fehlgeschlagenen Auswertungsversuchs schliessen,
+dann nochmal versuchen 1+1 auszuwerten (<shift>+<enter>): jetzt klappt's :-))))
+
+Und um zu testen, ob numpy und matplotlib verwendbar sind:
+
+......................................................
+import numpy as np
+import matplotlib.pyplot as plt
+# evenly distributed data between 0 and 1
+x = np.arange(0., 1., 0.1)
+# xkcd-styled plot
+plt.xkcd()
+# linear, quadratic, and cubic plots
+plt.plot(x, x, 'v-', x, x**2, 'x-', x, x**3, 'o-')
+plt.show()
+......................................................
+
+Yeah, der Plot erscheint im interactive window.
+
+
+
+===================
+II - INHALTE
+===================
+
+
+Ich verwende Christian Mayer's "Python One-Liners" ...
+
+
+
+############################################################################
+#FINIS
+
+
+
+
