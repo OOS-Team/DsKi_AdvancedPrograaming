@@ -733,7 +733,7 @@ print(l)                 #[(1, 4), (2, 5), (3, 6)]
 #Klammer entfernen, d.h. die Elemente herausholen. Das machen wir mit dem unpacking 
 #operator * (beachte: das funktioniert nur innerhalb von Funktionsaufrufen, 
 #hier z.B. in print):
-print(*l)                #(1, 4) (2, 5) (3, 6)
+print(*l)                #(1, 4) (2, 5) (3, 6) Der * zieht die Tupel aus der Liste
 #Nur der Vollständigkeit halber sei erwähnt, dass unpacking auch mit Generatoren funktioniert:
 print(*range(4))    #0 1 2 3
 #Die mit dem upacking-Operator * entpackten Elemente von l1_2 können wir wieder der
@@ -866,6 +866,7 @@ print(c)   # [[[1 2]
            #   [3 4]]
            #  [[5 6]
            #   [7 8]]]
+c.shape
 #Hinweis: die Dimensionalität erkennt man immer sofort an der Anzahl der äußeren Klammern!
 #NumPy-Arrays sind leistungsfähiger als integrierte Python-Listen. Zum Beispiel, kann man 
 #die grundlegenden arithmetischen Operatoren +, -, * und / auf zwei NumPy-Arrays anwenden. 
