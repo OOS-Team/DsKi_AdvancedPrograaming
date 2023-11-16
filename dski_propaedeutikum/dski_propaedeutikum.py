@@ -1264,6 +1264,7 @@ indices_int = np.array([1,4])
 indices_bool = np.array([False, True, False, False, True, False])
 Y[indices_int]      #array([2, 5])
 Y[indices_bool]     #array([2, 5])
+Y[1::3]             #array([2, 5])
 #---
 #Jetzt können wir endlich zu unserem eigtl. Anwendungsproblem kommen...
 #Wir haben die Luftverschmutzungsdaten aus mehreren Jahren für unterschiedliche Städte:
@@ -1316,6 +1317,28 @@ print(set(cities[np.nonzero(X > np.average(X))[0]]))    #{'Berlin', 'Hong Kong',
 #~~~~~~~~
 
 
+# Dependencies
+import numpy as np
+
+# Data: yearly salary in (€1000) [2017, 2018, 2019]
+alice = [99, 101, 103]
+bob = [110, 108, 105]
+tim = [90, 88, 85]
+names = ["alice", "bob", "tim"]
+salaries = np.array([alice, bob, tim])
+taxation = np.array([[0.2, 0.25, 0.22],
+                     [0.4, 0.5, 0.5],
+                     [0.1, 0.2, 0.1]])
+
+# One-liner
+max_income = np.max(salaries - salaries * taxation)
+
+# Result
+print(max_income)
+#81.0
+
+# Alternative 
+names[np.nonzero(salaries - salaries * taxation == np.max(salaries - salaries * taxation))[0][0]]
 
 #~~~~~~~~
 #Aufgabe:
@@ -1325,8 +1348,25 @@ print(set(cities[np.nonzero(X > np.average(X))[0]]))    #{'Berlin', 'Hong Kong',
 #Tipp: Verwenden Sie NumPy's leistungsfähigere Slicing-Fähigkeiten.
 #~~~~~~~~
 
+price = [[9.9, 9.8, 9.8, 9.4, 9.5, 9.7],
+         [9.5, 9.4, 9.4, 9.3, 9.2, 9.1],
+         [8.4, 7.9, 7.9, 8.1, 8.0, 8.0],
+         [7.1, 5.9, 4.8, 4.8, 4.7, 3.9]]
+
+# One-Liner
+sample = [line[::2] for line in price]
+
+# Result
+print(sample)
+#[[9.9, 9.8, 9.5],
+# [9.5, 9.4, 9.2],
+# [8.4, 7.9, 8.0],
+# [7.1, 4.8, 4.7]]
 
 
+new_price = np.array(price)
+
+new_price[:,::2]
 
 
 #########################################################################################
