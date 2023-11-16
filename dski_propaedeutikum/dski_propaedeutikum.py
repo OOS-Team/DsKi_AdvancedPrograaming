@@ -1507,7 +1507,7 @@ solar_x = np.array(
      [[1, 2, 3],  # heute
       [2, 2, 5]]) # gestern
 #Aktienkurse [morgens, mittags, abends] gemittelt über die beide Tage:
-print(np.average(solar_x, axis=0))     #[1.5 2. 4.]
+print(np.average(solar_x, axis=1))     #[1.5 2. 4.]
 #D.h. wir mitteln bzgl. der Zeilen (also axis=0) und zwar für jede Spalte. 
 #Das Axis-Argument gibt also eine Richtung an, in der im multidimensionalen Array etwas 
 #berechnet werden soll (im obigen Beispiel: der Mittelwert).  
@@ -1783,7 +1783,7 @@ a = np.array([[815, 70, 115],
 mean, stdev = np.mean(a, axis=0), np.std(a, axis=0)
 print(mean, stdev)       # [811.2 76.4 88. ], [152.97764543 6.85857128 29.04479299]
 
-## One-liner
+# One-liner
 outliers = ((np.abs(a[:,0] - mean[0]) > stdev[0])
             * (np.abs(a[:,1] - mean[1]) > stdev[1])
             * (np.abs(a[:,2] - mean[2]) > stdev[2]))
