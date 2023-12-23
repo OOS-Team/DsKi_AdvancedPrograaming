@@ -140,13 +140,12 @@ print("Die Kubikwurzel von -27 ist ungefähr:", annaehere_kubikwurzel(-27))
 def finde_sicherstes_stockwerk():
     hoehe = 102  # Höhe des Gebäudes in Stockwerken
     niedrig = 0
-    hoch = hoehe
     versuche = 0
     maximale_eier = 7
 
-    while niedrig < hoch and versuche < maximale_eier:
+    while niedrig < hoehe and versuche < maximale_eier:
         versuche += 1
-        mitte = (niedrig + hoch) // 2
+        mitte = (niedrig + hoehe) // 2
         print(f"Versuch {versuche}: Teste Stockwerk {mitte}")
 
         # Hier simulieren wir den Eierwurf. In der Praxis müsste hier eine Funktion sein,
@@ -154,7 +153,7 @@ def finde_sicherstes_stockwerk():
         eierwurf_ergebnis = simuliere_eierwurf(mitte)
 
         if eierwurf_ergebnis:  # Ei zerbricht
-            hoch = mitte
+            hoehe = mitte
         else:  # Ei bleibt ganz
             niedrig = mitte + 1
 
