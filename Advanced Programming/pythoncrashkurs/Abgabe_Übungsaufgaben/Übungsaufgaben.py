@@ -477,6 +477,9 @@ print(f([1, 2], [2, 3]))  # Sollte 9 zurückgeben
 #Tipp: Ein einfacher Weg, dies zu tun, besteht darin, ein neues Buch zu erstellen, 
 #indem Sie etwas(?) an das ursprüngliche Buch anhängen.
 ###############
+###############
+#Lösung Aufgabe 5.8.a:
+############### 
 
 # Erweiterte gen_code_keys Funktion
 def gen_code_keys_erweitert(book, plain_text):
@@ -544,3 +547,28 @@ print(decrypted_message)
 
 #Wenn Sie diesen Code mit dem Anfang von Don Quijote und dem gegebenen 
 # verschlüsselten Text ausführen, erhalten Sie die entschlüsselte Nachricht.
+
+###############
+# Lösung Aufgabe 5.8.b:
+############### 
+
+def decoder(book, cipher_text):
+    # Erstelle ein Dekodierungswörterbuch
+    decode_keys = {str(book.find(c)): c for c in set(book)}
+    return ''.join(decode_keys[code] for code in cipher_text.split('*') if code in decode_keys)
+
+def decrypt(book, cipher_text):
+    # Verwende den Decoder, um den Text zu entschlüsseln
+    return decoder(book, cipher_text)
+
+# Don Quijote Text
+Don_Quixote = """In a village of La Mancha, the name of which I have no desire to call to mind, 
+                 there lived not long since one of those gentlemen that keep a lance in the 
+                 lance-rack, an old buckler, a lean hack, and a greyhound for coursing"""
+
+# Verschlüsselter Text
+cipher_text = "22*13*33*155*59*11*23*11*1*57*6*13*1*2*6*57*2*6*1*22*13*33*155*59*11*23*11*1*57*6*209*7*11"
+
+# Entschlüsseln des Textes
+decrypted_text = decrypt(Don_Quixote, cipher_text)
+print(decrypted_text)
