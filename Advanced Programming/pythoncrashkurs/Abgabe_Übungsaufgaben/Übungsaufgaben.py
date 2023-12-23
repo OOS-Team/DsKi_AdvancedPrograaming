@@ -137,6 +137,42 @@ print("Die Kubikwurzel von -27 ist ungefähr:", annaehere_kubikwurzel(-27))
 #Methode 102 Eier. Entwickle eine Methode, die im schlimmsten Fall sieben Eier benötigt.
 ###############
 
+def finde_sicherstes_stockwerk():
+    hoehe = 102  # Höhe des Gebäudes in Stockwerken
+    niedrig = 0
+    hoch = hoehe
+    versuche = 0
+    maximale_eier = 7
+
+    while niedrig < hoch and versuche < maximale_eier:
+        versuche += 1
+        mitte = (niedrig + hoch) // 2
+        print(f"Versuch {versuche}: Teste Stockwerk {mitte}")
+
+        # Hier simulieren wir den Eierwurf. In der Praxis müsste hier eine Funktion sein,
+        # die überprüft, ob das Ei zerbricht oder nicht.
+        eierwurf_ergebnis = simuliere_eierwurf(mitte)
+
+        if eierwurf_ergebnis:  # Ei zerbricht
+            hoch = mitte
+        else:  # Ei bleibt ganz
+            niedrig = mitte + 1
+
+    # Ausgabe des Ergebnisses
+    return niedrig
+
+def simuliere_eierwurf(stockwerk):
+    import random
+    # Diese Funktion simuliert das Ergebnis eines Eierwurfs.
+    # In der Praxis müsste hier eine reale Prüfung stattfinden.
+    kritisches_stockwerk = random.randint(0, 102)  # Beispielwert
+    return stockwerk >= kritisches_stockwerk
+
+# Hauptprogramm
+sicherstes_stockwerk = finde_sicherstes_stockwerk()
+print(f"Das höchste Stockwerk, von dem ein Ei fallen gelassen werden kann, ohne zu zerbrechen, ist: {sicherstes_stockwerk}")
+
+
 
 #################
 #Aufgabe 4.1.1.b:
