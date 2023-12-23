@@ -478,22 +478,22 @@ print(f([1, 2], [2, 3]))  # Sollte 9 zurückgeben
 #indem Sie etwas(?) an das ursprüngliche Buch anhängen.
 ###############
 
-def gen_code_keys(book, plain_text):
-    # Füge ein spezielles Zeichen am Ende des Buches hinzu
-    special_char = "§"  # Kann jedes seltene Zeichen sein, das im normalen Text nicht vorkommt
-    book += special_char
+# Erweiterte gen_code_keys Funktion
+def gen_code_keys_erweitert(book, plain_text):
+    erweitertes_buch = book + '#'  # Füge ein spezielles Zeichen am Ende des Buchs hinzu
+    return {c: str(erweitertes_buch.find(c)) if c in book else str(len(book)) for c in plain_text}
 
-    # Erstelle das Kodierungswörterbuch
-    return {c: str(book.find(c) if c in book else book.find(special_char)) for c in plain_text}
+# Beispiel
+Don_Quixote = '''In a village of La Mancha, the name of which I have no desire to call to mind,
+                there lived not long since one of those gentlemen that keep a lance in the lance-rack,
+                  an old buckler, a lean hack, and a greyhound for coursing'''
 
-# Test der Funktion
-Don_Quixote = """In a village of La Mancha, the name of which I have no desire to call to mind, 
-                 there lived not long since one of those gentlemen that keep a lance in the 
-                 lance-rack, an old buckler, a lean hack, and a greyhound for coursing"""
+plain_text = "Hello Cypher Punk"
 
-# Verwende nun die modifizierte gen_code_keys Funktion
-code_keys = gen_code_keys(Don_Quixote, "xanadu")
-print(code_keys)  # '-1' wird nun durch den Index des speziellen Zeichens ersetzt
+# Generiere Kodierungswörterbuch
+kodierungswörterbuch = gen_code_keys_erweitert(Don_Quixote, plain_text)
+print(kodierungswörterbuch)
+
 
 
 ###############
