@@ -440,8 +440,25 @@ print('L1 =', L1)
 #     L.sort()           sortiert die Elemente in L aufsteigend
 #     L.reverse          kehrt die Reihenfolge der Elemente in L um
 
+###############
+#Lösung Aufgabe 5.3.a:
+############### 
+L = [1, 2, 3]
+L.append(L)
+print(L)
+'''Die Aufgabe zeigt, dass eine Liste sich selbst als Element enthalten kann.
+ Dies führt zu einer Art von "unendlicher" Verschachtelung,
+   wenn man versucht, die Liste auszudrucken oder zu inspizieren.
+'''
+print(L is L[-1])
+'''
+Der Vergleich mit 'is' prüft auf Objektidentität, d.h.,
+ob beide Seiten des Vergleichs exakt dasselbe Objekt im Speicher referenzieren.
+In diesem Fall ist das wahr, weil L[-1] direkt auf L verweist.
 
-
+Das liegt daran, dass beide Listen unendlich lang sind. Python macht
+hier keinen Unterschied für die Unendliche Teimenge L[-1] im Vergleich zu L.
+'''
 ###############
 #Aufgabe 5.4.a:
 ############### 
