@@ -136,6 +136,9 @@ print("Die Kubikwurzel von -27 ist ungefähr:", annaehere_kubikwurzel(-27))
 #man so lange tun, bis das Ei nicht mehr zerbricht. Im schlimmsten Fall benötigt diese 
 #Methode 102 Eier. Entwickle eine Methode, die im schlimmsten Fall sieben Eier benötigt.
 ###############
+###############
+#Aufgabe Lösung 3.2.c:
+############### 
 
 def finde_sicherstes_stockwerk():
     hoehe = 102  # Höhe des Gebäudes in Stockwerken
@@ -346,7 +349,19 @@ print(bisection_solve(99, eval_ans, 0.01, low, high))
 #steigende oder fallende) Funktion, die Floats auf Floats abbildet. Der folgende Code 4.4.2 
 #verwendet zum Beispiel bisection_solve, um Approximationen von Logarithmen zu finden.
 
+###############
+#Lösung Aufgabe 4.4.a:
+###############
+#Schreiben Sie einen Lambda-Ausdruck mit zwei numerischen Parametern. Wenn das zweite 
+#Argument gleich Null ist, sollte er None returnieren. Andernfalls sollte er den Wert 
+#zurückgeben, der sich aus der Division des ersten Arguments durch das zweite Argument
+#ergibt. Tipp: Verwenden Sie einen (ternären) bedingten Ausdruck.
+###############
+teile = lambda x, y: None if y == 0 else x / y
 
+#Testen:
+teile(5,2)   # 2.5
+teile(6,0)   # None
 
 ###############
 #Aufgabe 5.3.a:
