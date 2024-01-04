@@ -1,74 +1,86 @@
 ###############
-#Aufgabe 3.1.b:
-############### 
-#Schreiben Sie ein Programm, das den Benutzer auffordert, eine ganze Zahl einzugeben
-#und zwei Ganzzahlen, root und pwr, so ausgibt, dass 1 < pwr < 6
-#und root**pwr gleich der vom Benutzer eingegebenen ganzen Zahl ist. Wenn kein solches
-#Paar von Ganzzahlen existiert, sollte es eine entsprechende Meldung ausgeben.
-###############
-
-###############
 #Lösung 3.1.b
 ###############
 
-#i = root
-#j = pwr
-
+# Eingabeaufforderung für den Benutzer, um eine ganze Zahl einzugeben
 x = int(input('Integer eingeben: '))
-for i in range(1,x):
-    for j in range(2,6):
+
+
+# Äußere Schleife: i durchläuft Werte von 1 bis x-1
+for i in range(1, x):
+    # Innere Schleife: j durchläuft Werte von 2 bis 5
+    for j in range(2, 6):
+        # Überprüft, ob i hoch j gleich x ist
         if i ** j == x:
+            # Wenn die Bedingung wahr ist, wird das Paar (i, j) ausgegeben
             print(f'Root: {i} Potenz: {j}')
+            # Unterbricht die innere Schleife, wenn ein Paar gefunden wird
             break
-    if i**j == x:
+    # Überprüft erneut, ob die Bedingung erfüllt ist und bricht die äußere Schleife ab, falls ja
+    if i ** j == x:
         break
+# Die else-Klausel der for-Schleife wird ausgeführt, wenn kein Paar gefunden wird
 else:
     print('Kein Paar gefunden')
 
-
-
+# Definition der Funktion root_base
 def root_base():
-    x=int(input('Gebe eine ganze Zahl ein'))
-    for i in range(1,x):
-        for j in range(2,6):
-            if i**j==x:
+    # Eingabeaufforderung innerhalb der Funktion
+    x = int(input('Gebe eine ganze Zahl ein'))
+
+    # Gleiche Schleifenstruktur und Logik wie oben
+    for i in range(1, x):
+        for j in range(2, 6):
+            if i ** j == x:
                 print(f'roote: {i} potenz: {j}')
                 break
-        if i**j==x:
+        if i ** j == x:
             break
     else:
         print('Kein Paar gefunden')
 
-root_base()   
-
-###############
-#Aufgabe 3.2.b:
-###############  
-#Was müsste geändert werden, damit der Code 3.2.2 eine Annäherung an die Kubikwurzel 
-#von sowohl negativen als auch positiven Zahlen findet? Tipp: Denken Sie darüber nach, 
-#den Wert low zu ändern, um sicherzustellen, dass die Antwort innerhalb des gesuchten 
-#Bereichs liegt.
-###############
-x = 27  # Wir suchen die Kubikwurzel von -27
-epsilon = 0.01
-num_guesses, low = 0, min(-1, x)
-high = max(1, x)
-ans = (high + low) / 2
-while abs(ans**3 - x) >= epsilon:
-    print('low =', low, 'high =', high, 'ans =', ans)
-    num_guesses += 1
-    if ans**3 < x:
-        low = ans
-    else:
-        high = ans
-    ans = (high + low) / 2
-print('number of guesses =', num_guesses)
-print(ans, 'is close to cube root of', x)
+# Aufruf der Funktion root_base
+root_base()
 
 
-# In diesem Beispiel wird low auf min(-1, x) gesetzt, um sicherzustellen,
-#  dass der gesuchte Bereich für negative Zahlen korrekt ist.
-# Der Code sucht dann nach der Kubikwurzel, indem er ans**3 statt ans**2 verwendet.
+#################
+#Erklärung 3.1.b
+#################
+
+'''
+Der bereitgestellte Code ist ein Python-Skript, das darauf abzielt,
+Wurzel-Potenz-Paare für eine gegebene Zahl zu finden.
+Es besteht aus zwei Hauptteilen: einem Skriptblock und einer Funktion namens root_base.
+Hier ist eine detaillierte Beschreibung des Codes:
+
+Benutzereingabe:
+Der Code beginnt mit einer Aufforderung an den Benutzer, eine ganze Zahl x einzugeben.
+Diese Eingabe wird als Ganzzahl (int) interpretiert und in der Variablen x gespeichert.
+
+Suche nach Wurzel-Potenz-Paaren:
+Eine verschachtelte Schleife wird verwendet, um Wurzel-Potenz-Paare zu finden,
+die der Bedingung i ** j == x genügen, wobei i die Wurzel und j die Potenz ist.
+Die äußere Schleife lässt i Werte von 1 bis x-1 durchlaufen.
+Innerhalb der äußeren Schleife gibt es eine innere Schleife,
+in der j Werte von 2 bis 5 durchläuft.
+In jeder Iteration der inneren Schleife wird geprüft, ob i ** j gleich x ist.
+Falls ja, wird das Paar (i, j) ausgegeben und die innere Schleife wird mittels break beendet.
+Nachdem die innere Schleife beendet ist, überprüft der Code erneut, ob i ** j == x ist.
+Falls dies der Fall ist, wird auch die äußere Schleife beendet.
+Falls kein entsprechendes Paar gefunden wird, gibt der Code nach Beendigung der äußeren Schleife
+die Nachricht "Kein Paar gefunden" aus. Dies wird durch die else-Klausel der for-Schleife ermöglicht.
+
+Funktion root_base:
+Die Funktion root_base ist im Wesentlichen eine Wiederholung des oben beschriebenen Codes.
+Sie fordert den Benutzer auf, eine ganze Zahl einzugeben und sucht dann nach Wurzel-Potenz-Paaren für diese Zahl.
+Die gleiche Logik und Schleifenstruktur wie im Skriptblock wird innerhalb dieser Funktion angewendet.
+Nachdem die Funktion definiert wurde, wird sie aufgerufen, um ihre Funktionalität auszuführen.
+
+Zusammenfassend ist das Ziel dieses Codes, für eine eingegebene ganze Zahl x ein Paar von Zahlen (i, j) zu finden,
+sodass i hoch j gleich x ist. Der Code führt diese Suche sowohl im Hauptteil
+des Skripts als auch in einer separaten Funktion durch. Wenn kein solches Paar gefunden wird,
+informiert er den Benutzer entsprechend.
+'''
 
 ###############
 #Lösung 3.2.b
@@ -123,19 +135,51 @@ def annaehere_kubikwurzel(zahl, genauigkeit=0.01):
 print("Die Kubikwurzel von 27 ist ungefähr:", annaehere_kubikwurzel(27))
 print("Die Kubikwurzel von -27 ist ungefähr:", annaehere_kubikwurzel(-27))
 
+#################
+#Erklärung 3.2.b
+#################
 
+'''
+Der bereitgestellte Python-Code definiert eine Funktion annaehere_kubikwurzel, die darauf abzielt,
+eine Annäherung an die Kubikwurzel einer gegebenen Zahl zu finden.
+Der Code verwendet das Bisektionsverfahren, eine Methode der numerischen Analysis,
+um eine Näherungslösung zu ermitteln.
+Nachfolgend wird der Code detailliert beschrieben:
 
+Funktionsdefinition und Parameter:
+Die Funktion annaehere_kubikwurzel nimmt zwei Parameter entgegen: zahl, die Kubikwurzel, die berechnet werden soll,
+und genauigkeit, die die Genauigkeit der berechneten Annäherung angibt.
+Der Standardwert für genauigkeit ist 0.01.
 
-###############
-#Aufgabe 3.2.c:
-###############  
-#Das Empire State Building ist 102 Stockwerke hoch. Jemand möchte wissen, aus welchem 
-#Stockwerk ein Ei fallen gelassen werden kann, ohne dass es zerbricht. Folgende Idee
-#wird verfolgt: ein Ei wird aus dem obersten Stockwerk fallengelassen. Sollte es 
-#zerbrechen, würde man eine Etage tiefer gehen und es erneut versuchen. Dies könnte
-#man so lange tun, bis das Ei nicht mehr zerbricht. Im schlimmsten Fall benötigt diese 
-#Methode 102 Eier. Entwickle eine Methode, die im schlimmsten Fall sieben Eier benötigt.
-###############
+Initialisierung:
+Die Variable versuchsanzahl wird initialisiert, um die Anzahl der durchgeführten Iterationen zu zählen.
+Es werden zwei Grenzwerte festgelegt: untere_grenze und obere_grenze.
+Diese Grenzen definieren den Bereich, in dem die Kubikwurzel gesucht wird.
+Für positive Zahlen wird untere_grenze auf 0 und obere_grenze auf das Maximum von 1
+und der gegebenen Zahl gesetzt. Für negative Zahlen wird untere_grenze auf
+das Minimum von -1 und der Zahl und obere_grenze auf 0 gesetzt.
+
+Bisektionsverfahren:
+Die Schleife wird solange ausgeführt, bis die Differenz zwischen schaetzung**3 (der dritten Potenz der Schätzung)
+und der gegebenen Zahl zahl kleiner als die vorgegebene genauigkeit ist.
+In jeder Iteration der Schleife wird zunächst geprüft, ob schaetzung**3 kleiner als zahl ist.
+Wenn ja, wird untere_grenze auf den aktuellen Schätzwert schaetzung gesetzt.
+Andernfalls wird obere_grenze auf schaetzung gesetzt.
+Die neue Schätzung wird als Mittelwert der aktuellen untere_grenze und obere_grenze berechnet.
+Die Anzahl der Versuche wird in jeder Iteration um eins erhöht.
+
+Ergebnisausgabe:
+Nachdem die Schleife beendet ist, wird die Anzahl der Versuche ausgegeben, um die Annäherung zu erreichen.
+Die Funktion gibt den geschätzten Wert der Kubikwurzel zurück.
+
+Testen der Funktion:
+Am Ende des Codes wird die Funktion annaehere_kubikwurzel mit zwei Beispielen getestet: einmal mit der 
+positiven Zahl 27 und einmal mit der negativen Zahl -27.
+
+Zusammenfassend verwendet dieser Code das Bisektionsverfahren, um eine Annäherung an die Kubikwurzel einer gegebenen
+Zahl zu finden und demonstriert dabei eine Anwendung der numerischen Methoden in Python.
+'''
+
 ###############
 #Aufgabe Lösung 3.2.c:
 ############### 
@@ -151,8 +195,6 @@ def finde_sicherstes_stockwerk():
         mitte = (niedrig + hoehe) // 2
         print(f"Versuch {versuche}: Teste Stockwerk {mitte}")
 
-        # Hier simulieren wir den Eierwurf. In der Praxis müsste hier eine Funktion sein,
-        # die überprüft, ob das Ei zerbricht oder nicht.
         eierwurf_ergebnis = simuliere_eierwurf(mitte)
 
         if eierwurf_ergebnis:  # Ei zerbricht
@@ -174,16 +216,57 @@ def simuliere_eierwurf(stockwerk):
 sicherstes_stockwerk = finde_sicherstes_stockwerk()
 print(f"Das höchste Stockwerk, von dem ein Ei fallen gelassen werden kann, ohne zu zerbrechen, ist: {sicherstes_stockwerk}")
 
-
-
 #################
-#Aufgabe 4.1.1.b:
+#Erklärung 3.2.c
 #################
-#Schreiben Sie eine Funktion is_in, die zwei Zeichenketten als Argumente akzeptiert
-#und True zurückgibt, wenn eine der beiden Zeichenketten irgendwo in der anderen
-#vorkommt. Andernfalls soll is_in False zurückgeben. 
-#Tipp: Sie können den eingebauten in-Operator in verwenden.
-################
+
+'''
+Hauptfunktion: finde_sicherstes_stockwerk
+Zweck: Bestimmen des höchsten Stockwerks, von dem ein Ei fallen gelassen werden kann, ohne zu zerbrechen.
+Parameter: Keine expliziten Parameter.
+Rückgabewert: Die Nummer des sichersten Stockwerks.
+Funktionsablauf
+
+Initialisierung:
+hoehe: Stellt die Höhe des Gebäudes in Stockwerken dar, initialisiert mit 102.
+niedrig: Der Startpunkt der Suche, initialisiert mit 0.
+versuche: Zählt die Anzahl der durchgeführten Tests, initialisiert mit 0.
+maximale_eier: Begrenzt die Anzahl der Versuche, hier auf 7 festgelegt.
+Hauptschleife:
+
+Die Schleife läuft, solange niedrig < hoehe und die Anzahl der versuche kleiner als maximale_eier ist.
+Bei jedem Durchlauf wird versuche um 1 erhöht.
+mitte: Berechnet das mittlere Stockwerk zwischen niedrig und hoehe.
+Eierwurf-Simulation:
+
+Aufruf der Funktion simuliere_eierwurf mit dem aktuellen mitte-Wert.
+Je nach Ergebnis (Ei zerbricht oder bleibt ganz) wird der Suchbereich angepasst:
+Wenn das Ei zerbricht (eierwurf_ergebnis == True), wird hoehe auf mitte gesetzt.
+Wenn das Ei ganz bleibt, wird niedrig auf mitte + 1 gesetzt.
+Ergebnis:
+
+Die Funktion gibt den Wert von niedrig zurück, sobald die Schleife beendet ist. 
+Dies repräsentiert das sicherste Stockwerk.
+Hilfsfunktion: simuliere_eierwurf
+Zweck: Simuliert den Eierwurf von einem bestimmten Stockwerk.
+Parameter:
+stockwerk: Das Stockwerk, von dem das Ei geworfen wird.
+Rückgabewert: Ein boolescher Wert, der angibt, ob das Ei beim Wurf zerbricht.
+Funktionsablauf
+Simulation:
+Die Funktion nutzt die random-Bibliothek, um ein kritisches Stockwerk zufällig auszuwählen.
+Der Vergleich stockwerk >= kritisches_stockwerk bestimmt, ob das Ei zerbricht.
+Hauptprogramm
+Das Hauptprogramm ruft finde_sicherstes_stockwerk auf und speichert das Ergebnis in sicherstes_stockwerk.
+Anschließend wird das Ergebnis ausgegeben: "Das höchste Stockwerk, von dem ein Ei fallen gelassen werden kann,
+ohne zu zerbrechen, ist: [sicherstes_stockwerk]".
+
+Zusammenfassung
+Dieser Code verwendet eine binäre Suchstrategie, um effizient das "sicherste" Stockwerk in einem hohen Gebäude
+zu ermitteln, von dem ein Ei fallen gelassen werden kann, ohne zu zerbrechen. Die Simulation setzt dabei eine
+begrenzte Anzahl von Versuchen (Eier) voraus und verwendet eine zufällige Auswahl,
+um das kritische Stockwerk zu bestimmen.
+'''
 
 ###############
 #Lösung 4.1.1.b
@@ -207,13 +290,47 @@ def is_in(str1, str2):
 print(is_in("Hallo", "Welt"))  # Gibt False zurück
 print(is_in("Hallo", "Hallo Welt"))  # Gibt True zurück
 
-
 #################
-#Aufgabe 4.1.1.c:
+#Erklärung 4.1.1.b
 #################
-#Schreiben Sie eine Testfunktion für is_in.
-################
 
+'''
+Die Funktion is_in ist dazu bestimmt, zu überprüfen, ob eine der beiden übergebenen Zeichenketten (str1 oder str2)
+in der anderen enthalten ist. Hier ist eine detaillierte Erläuterung der Funktionsweise
+und der verwendeten Syntax:
+Funktion: is_in
+
+Parameter:
+str1 (str): Die erste Zeichenkette.
+str2 (str): Die zweite Zeichenkette.
+
+Rückgabewert:
+bool: Die Funktion gibt einen booleschen Wert (True oder False) zurück.
+True: Wird zurückgegeben, wenn str1 in str2 enthalten ist oder umgekehrt.
+False: Wird zurückgegeben, wenn keine der Zeichenketten in der anderen enthalten ist.
+Funktionsweise
+Logische Operation:
+Die Funktion nutzt den in Operator in Python, der überprüft, ob eine Zeichenkette Teil einer anderen ist.
+str1 in str2 überprüft, ob str1 in str2 enthalten ist.
+str2 in str1 überprüft, ob str2 in str1 enthalten ist.
+Der logische Operator or wird verwendet, um zu prüfen, ob eine der beiden Bedingungen True ergibt.
+Wenn ja, gibt die Funktion True zurück, sonst False.
+
+Beispiele
+print(is_in("Hallo", "Welt")):
+
+Überprüft, ob "Hallo" in "Welt" enthalten ist oder umgekehrt.
+Da keines in dem anderen enthalten ist, gibt die Funktion False zurück.
+print(is_in("Hallo", "Hallo Welt")):
+
+Überprüft, ob "Hallo" in "Hallo Welt" enthalten ist oder umgekehrt.
+Da "Hallo" ein Teil von "Hallo Welt" ist, gibt die Funktion True zurück.
+
+Zusammenfassung
+Die Funktion is_in ist eine einfache und effektive Methode, um zu bestimmen, 
+ob eine Zeichenkette in einer anderen enthalten ist. Sie kann in verschiedenen Kontexten verwendet werden,
+wie zum Beispiel beim Textvergleich oder der Suche in Zeichenketten.
+'''
 
 ###############
 #Lösung 4.1.1.c
@@ -241,17 +358,48 @@ def test_is_in():
 # Führe die Testfunktion aus
 test_is_in()
 
+#################
+#Erklärung 4.1.1.b
+#################
 
-###############
-#Aufgabe 4.2.a:
-###############
-#Schreiben Sie unter Verwendung des Algorithmus aus Code 3.2.3 (in Kap3) eine Funktion, 
-#die die folgende Spezifikation erfüllt:
-def log(x, base, epsilon):
-    """Assumes x and epsilon int or float, base an int,
-    x > 1, epsilon > 0 & power >= 1
-    Returns float y such that base**y is within epsilon of x."""
-###############
+'''
+Die Funktion test_is_in ist eine Testfunktion, die darauf abzielt, verschiedene Szenarien für eine andere
+Funktion namens is_in zu überprüfen. Die is_in-Funktion (die nicht im bereitgestellten Code enthalten,
+aber implizit definiert ist) soll überprüfen, ob einer von zwei gegebenen Strings im anderen enthalten ist. 
+Hier ist eine Erläuterung der Testfunktion:
+
+Funktion: test_is_in
+Zweck: Testen der Funktionalität der is_in-Funktion in verschiedenen Szenarien.
+Testfälle in der Funktion:
+
+Testfall 1 - Gleiche Strings:
+assert is_in("test", "test"): Überprüft, ob der String "test" in sich selbst enthalten ist.
+Die Fehlermeldung "Fehler: 'test' sollte in 'test' enthalten sein." wird ausgegeben, falls der Test fehlschlägt.
+
+Testfall 2 - Erster String im zweiten enthalten:
+assert is_in("Hallo", "Hallo Welt"): Testet, ob der String "Hallo" im String "Hallo Welt" enthalten ist.
+Die Fehlermeldung für einen Fehlschlag lautet hier: "Fehler: 'Hallo' sollte in 'Hallo Welt' enthalten sein."
+
+Testfall 3 - Zweiter String im ersten enthalten:
+assert is_in("Welt Hallo", "Hallo"): Überprüft, ob "Hallo" im String "Welt Hallo" enthalten ist.
+Im Falle eines Fehlschlags wird die Nachricht "Fehler: 'Hallo' sollte in 'Welt Hallo' enthalten sein." angezeigt.
+
+Testfall 4 - Strings nicht ineinander enthalten:
+assert not is_in("Hallo", "Welt"): Stellt sicher, dass "Hallo" nicht im String "Welt" enthalten ist.
+Bei einem Fehlschlag erscheint die Fehlermeldung "Fehler: 'Hallo' sollte nicht in 'Welt' enthalten sein."
+
+Testdurchführung:
+Die Funktion test_is_in führt diese Tests aus und gibt "Alle Tests erfolgreich durchgeführt." aus,
+wenn alle assert-Anweisungen bestehen, d.h., wenn alle Tests die erwarteten Ergebnisse liefern.
+Die Verwendung von assert bedeutet, dass bei einem Fehlschlagen eines Tests eine Ausnahme ausgelöst
+wird und die Ausführung der Funktion abgebrochen wird. Dies zeigt an, dass die is_in-Funktion nicht
+wie erwartet funktioniert.
+
+Zusammenfassung
+Die test_is_in-Funktion dient als eine Reihe von automatisierten Tests, um sicherzustellen, 
+dass die is_in-Funktion korrekt arbeitet. Solche Testfunktionen sind in der Softwareentwicklung üblich, 
+um die Zuverlässigkeit und Korrektheit des Codes zu gewährleisten.
+'''
 
 ###############
 #Lösung 4.2.a
@@ -286,159 +434,102 @@ def log(x, base, epsilon):
 print(log(8, 2, 0.01))  # Gibt eine Annäherung an log2(10) zurück
 print(log(9, 10, 0.001))  # Gibt eine Annäherung an log10(1000) zurück
 
-###############
-#Aufgabe 4.4.a:
-###############
-#Schreiben Sie einen Lambda-Ausdruck mit zwei numerischen Parametern. Wenn das zweite 
-#Argument gleich Null ist, sollte er None returnieren. Andernfalls sollte er den Wert 
-#zurückgeben, der sich aus der Division des ersten Arguments durch das zweite Argument
-#ergibt. Tipp: Verwenden Sie einen (ternären) bedingten Ausdruck.
-###############
-#--- Verallgemeinerte (higher-order) Bisektionssuche ---
-def bisection_solve(x, eval_ans, epsilon, low, high):
-    """x, epsilon, low, high are floats
-       epsilon > 0
-       eval_ans a function mapping a float to a float
-       low <= high and there is an ans between low and high s.t.
-           eval(ans) is within epsilon of x
-       returns ans s.t. eval(ans) within epsilon of x"""
-    ans = (high + low)/2
-    while abs(eval_ans(ans) - x) >= epsilon:
-        if eval_ans(ans) < x:
-            low = ans
-        else:
-            high = ans
-        ans = (high + low)/2
-    return ans
-#---
+#################
+#Erklärung 4.2 a
+#################
 
+'''
+Die Funktion log ist dazu gedacht, eine Annäherung an den Logarithmus einer Zahl x zur Basis base zu finden.
+Hier ist eine detaillierte Erklärung des Codes:
 
+Parameter der Funktion log
 
-#3 ist ein Rückgabewert
-3 if 4<2 else 5
+x: Die Zahl, deren Logarithmus berechnet werden soll. Es wird angenommen, dass x ein Integer oder Float ist
+und größer als 1.
+base: Die Basis des Logarithmus. Es wird angenommen, dass base ein Integer ist und mindestens 1.
+epsilon: Die Genauigkeit der Annäherung. Es wird angenommen, dass epsilon ein Integer oder Float
+ist und größer als 0.
+Funktionsablauf
 
-if 3 < 2:
-    print('Kein Rückgabewert')
-else:
-    print('Kein Rückg.wert')
+Initialisierung der Grenzwerte:
+low wird auf 0 gesetzt.
+high wird auf das Maximum von 1 und x gesetzt, um sicherzustellen, dass der Bereich, in dem gesucht wird, sinnvoll ist.
 
-#Da Funktionen Objekte erster Klasse sind, können sie innerhalb von Funktionen erstellt 
-#und innerhalb von Funktionen zurückgegeben werden. Zum Beispiel, wenn die Funktions-
-#definition lautet
+Anfängliche Schätzung:
+guess (die geschätzte Potenz) wird als der Mittelwert zwischen low und high initialisiert.
 
+Suchschleife:
+Die Schleife wird so lange ausgeführt, bis der Unterschied zwischen base**guess und x kleiner als epsilon ist, was bedeutet, dass eine ausreichende Annäherung erreicht wurde.
 
-#Nennt sich let over lambda
+Innerhalb der Schleife:
+Wenn base**guess kleiner als x ist, wird low auf den aktuellen Schätzwert guess gesetzt.
+Andernfalls, wenn base**guess größer oder gleich x ist, wird high auf guess gesetzt.
+Nach jeder Anpassung der Grenzen wird guess neu berechnet als der Mittelwert von low und high.
+Rückgabe:
 
-def create_eval_ans():
-    power = input('Enter a positive integer: ')
-    return lambda ans: ans**int(power)
+Die Funktion gibt den geschätzten Wert guess zurück, sobald die Annäherung innerhalb der vorgegebenen 
+Genauigkeit epsilon liegt.
+Testbeispiele
+log(8, 2, 0.01): Berechnet eine Annäherung an den Logarithmus von 8 zur Basis 2 (log2(8)) 
+mit einer Genauigkeit von 0.01.
+log(9, 10, 0.001): Berechnet eine Annäherung an den Logarithmus von 9 zur Basis 10 (log10(9))
+mit einer Genauigkeit von 0.001.
 
-#dann wird die Ausführung des folgenden Codes (die Codes 4.3.1 und 4.4.1 werden ebenfalls
-#benötigt) ... 
-
-eval_ans = create_eval_ans()
-print(bisection_solve(99, eval_ans, 0.01, low, high))
-
-#eine Annäherung an die n-te Wurzel aus 99 ergeben, wobei n eine vom Benutzer eingegebene 
-#Zahl ist. Wenn z.B. 10 eingegeben wird (power ist dann 10), dann wird die 10-te Wurzel
-#von 99 berechnet. Das wäre dann 1.58331298828125
-
-#Die Art und Weise, wie wir bisection_solve verallgemeinert haben, bedeutet, dass es
-#nicht nur für Approximationen von Wurzeln verwendet werden kann, sondern auch für
-#Approximationen an eine beliebige monotone (also nicht-schwankende, sondern eben monoton
-#steigende oder fallende) Funktion, die Floats auf Floats abbildet. Der folgende Code 4.4.2 
-#verwendet zum Beispiel bisection_solve, um Approximationen von Logarithmen zu finden.
+Zusammenfassung
+Diese Funktion ist ein gutes Beispiel für die Anwendung des Bisektionsverfahrens, 
+einer effizienten Methode zur Lösung von Problemen, bei denen eine kontinuierliche 
+Funktion (in diesem Fall base**y - x) innerhalb eines bestimmten Bereichs (zwischen low und high)
+einen bestimmten Wert (nahe 0) erreichen soll. Durch wiederholtes Halbieren des Suchbereichs nähert
+sich die Funktion einer Lösung an, die der realen Lösung des Logarithmus von x zur Basis base sehr nahekommt.
+'''
 
 ###############
 #Lösung Aufgabe 4.4.a:
 ###############
-#Schreiben Sie einen Lambda-Ausdruck mit zwei numerischen Parametern. Wenn das zweite 
-#Argument gleich Null ist, sollte er None returnieren. Andernfalls sollte er den Wert 
-#zurückgeben, der sich aus der Division des ersten Arguments durch das zweite Argument
-#ergibt. Tipp: Verwenden Sie einen (ternären) bedingten Ausdruck.
-###############
+
 teile = lambda x, y: None if y == 0 else x / y
 
 #Testen:
 teile(5,2)   # 2.5
 teile(6,0)   # None
 
-###############
-#Aufgabe 5.3.a:
-############### 
-#Was gibt der folgende Code aus?
-#Nicht einfach ausprobieren, sondern erst austüfteln und vorhersagen:
-L = [1, 2, 3]
-#Ist rekuriv wiederholt sich unendlich oft
-L.append(L)
-# Da unendlich
-print(L is L[-1])
+#################
+#Erklärung 4.4.a
+#################
 
-#Hinweis: der Index -1 bzeichnet das letzte Listenelement, siehe z.B.:
-[1,2,3][-1]    #3
-###############
+'''
+Der bereitgestellte Code definiert einen Lambda-Ausdruck namens teile, der zwei Parameter x und y annimmt
+ und eine bedingte Operation ausführt:
 
+Lambda-Ausdruck: teile
+Zweck: Berechnet die Division von x durch y und behandelt dabei den Fall, dass y gleich Null ist.
 
+Struktur:
+lambda x, y: Definiert einen anonymen (lambda) Funktion, die zwei Argumente x (Dividend) und y (Divisor) akzeptiert.
+None if y == 0 else x / y: Ein bedingter Ausdruck (auch als ternärer Operator bekannt).
+Bedingung: y == 0
+Wenn y gleich Null ist, könnte eine Division zu einem Division-durch-Null-Fehler führen. Um dies zu vermeiden,
+gibt der Ausdruck in diesem Fall None zurück.
+Andernfalls: x / y
+Wenn y nicht Null ist, führt der Ausdruck die Division von x durch y aus und gibt das Ergebnis zurück.
 
-#Das Zusammenspiel von Aliasing und Veränderbarkeit bei Defaultparameterwerten
-#ist etwas, auf das man achten sollte. Betrachten Sie den folgenden Code
+Testfälle
+teile(5, 2):
+x = 5 und y = 2.
+Da y nicht Null ist, wird die Division durchgeführt: 5 / 2, was 2.5 ergibt.
+Das Ergebnis ist 2.5.
+teile(6, 0):
 
-def append_val(val, list_1 = []):
-    list_1.append(val)
-    print(list_1)
- 
-append_val(3)          #[3]
-append_val(4)          #[3, 4]
+x = 6 und y = 0.
+Da y gleich Null ist, könnte eine Division durch Null stattfinden, was nicht erlaubt ist.
+Der Lambda-Ausdruck gibt daher None zurück, um einen Fehler zu vermeiden.
+Das Ergebnis ist None.
 
-#Man könnte meinen, dass der zweite Aufruf von append_val die Liste
-#die Liste [4] ausgeben würde, weil er 4 an die leere Liste angehängt hätte.
-#Tatsächlich wird [3, 4] gedruckt. Dies geschieht, weil bei der Funktionsdefinition
-#ein neues Objekt vom Typ list als Default-Parameter erzeugt wird, dessen Anfangswert 
-#die leere Liste ist. 
-#Jedes Mal, wenn append_val aufgerufen wird, ohne einen Wert für den formalen Parameter 
-#list_1, wird das bei der Funktionsdefinition erzeugte Objekt an list_1 gebunden, 
-#mutiert und dann gedruckt. So wird beim zweiten Aufruf von append_val mutiert und eine
-#Liste ausgedruckt, die bereits durch den ersten Aufruf von append_val mutiert wurde.
-
-#Wenn wir eine Liste an eine andere anhängen, z.B. (siehe oben) Techs.append(Ivys),
-#wird die ursprüngliche Struktur beibehalten. Das Ergebnis ist eine Liste, die eine
-#Liste enthält. Angenommen, wir wollen diese Struktur nicht beibehalten, sondern
-#die Elemente(!) einer Liste in eine andere Liste einfügen. Dann können wir das tun, 
-#indem wir eine Listenverkettung (concatenation) mit dem +-Operator oder mit der 
-#extend-Methode ausführen, z.B.
-
-L1 = [1,2,3]
-L2 = [4,5,6]
-L3 = L1 + L2
-print('L3 =', L3)
-L1.extend(L2)
-print('L1 =', L1)
-L1.append(L2)
-print('L1 =', L1)
-
-#wird folgendes ausdrucken:
-#         L3 = [1, 2, 3, 4, 5, 6]
-#         L1 = [1, 2, 3, 4, 5, 6]
-#         L1 = [1, 2, 3, 4, 5, 6, [4, 5, 6]]
-
-#Beachten Sie, dass der Operator + keine Seiteneffekte hat. Er erstellt eine neue
-#Liste und gibt sie zurück. Im Gegensatz dazu mutieren extend und append jeweils L1.
-#Es folgt eine kurze Beschreibung einiger der Methoden, die für Listen verfügbar sind. 
-#Beachten Sie, dass alle diese Methoden außer count und index die Liste verändern.
-
-#     L.append(e)        fügt das Objekt e ans Ende der Liste L ein
-#     L.count(e)         returniert wie häufig e in L vorkommt
-#     L.insert(i, e)     fügt e beim Index i in L ein
-#     L.extend(L1)       fügt die Elemente der Liste L1 ans Ende von L ein
-#     L.remove(e)        entfernt das erste Auftreten von e in L
-#     L.index(e)         returniert den Index des ersten Auftretens von e in L;
-#                        wirft eine Exception, wenn e nicht in L ist
-#     L.pop(i)           entfernt und returniert das Element am Index i in L;
-#                        wirft eine Exception, wenn L leer ist; wenn i weggelassen wird,
-#                        ist der default -1, so dass das letzte Element entfernt und
-#                        returniert wird
-#     L.sort()           sortiert die Elemente in L aufsteigend
-#     L.reverse          kehrt die Reihenfolge der Elemente in L um
+Zusammenfassung
+Der Lambda-Ausdruck teile ist eine kurze und effiziente Methode, um eine sichere Division durchzuführen.
+Er vermeidet Division-durch-Null-Fehler, indem er None zurückgibt, wenn der Divisor 0 ist,
+und führt andernfalls die reguläre Division aus.
+'''
 
 ###############
 #Lösung Aufgabe 5.3.a:
@@ -451,25 +542,49 @@ print(L)
    wenn man versucht, die Liste auszudrucken oder zu inspizieren.
 '''
 print(L is L[-1])
-'''
-Der Vergleich mit 'is' prüft auf Objektidentität, d.h.,
-ob beide Seiten des Vergleichs exakt dasselbe Objekt im Speicher referenzieren.
-In diesem Fall ist das wahr, weil L[-1] direkt auf L verweist.
 
-Das liegt daran, dass beide Listen unendlich lang sind. Python macht
-hier keinen Unterschied für die Unendliche Teimenge L[-1] im Vergleich zu L.
+#################
+#Erklärung 5.3.a
+#################
+
 '''
-###############
-#Aufgabe 5.4.a:
-############### 
-#Implementieren Sie eine Funktion, die die folgende Spezifikation erfüllt. 
-#Hinweis: Es ist zweckmäßig, lambda im Körper der Implementierung zu verwenden.
-def f(L1, L2):
-    """L1, L2 lists of same length of numbers
-       returns the sum of raising each element in L1
-       to the power of the element at the same index in L2
-       For example, f([1,2], [2,3]) returns 9"""
-###############
+Code-Teil 1: Erstellen und Modifizieren der Liste
+L = [1, 2, 3]
+L.append(L)
+print(L)
+
+Erstellen der Liste L: Zunächst wird eine Liste L mit den Elementen [1, 2, 3] erstellt.
+Selbstreferenzierung: Anschließend wird die Liste L selbst als ein weiteres Element an L angehängt.
+Nach dieser Operation enthält L vier Elemente: die drei ursprünglichen Zahlen und die Liste selbst.
+Ausgabe der Liste: Der print-Befehl gibt L aus. Das Ergebnis ist [1, 2, 3, [...]]. Hierbei steht [...] 
+für die Selbstreferenz der Liste L. Python verhindert eine unendliche Rekursion bei der Ausgabe,
+indem es die Selbstreferenz mit [...] kennzeichnet.
+
+Code-Teil 2: Überprüfen der Objektidentität
+print(L is L[-1])
+
+Vergleich mit 'is': Der is-Operator überprüft, ob zwei Referenzen dasselbe Objekt im Speicher zeigen.
+L ist eine Referenz auf die Liste.
+L[-1] ist eine Referenz auf das letzte Element in L, welches, aufgrund der vorherigen Operation, L selbst ist.
+Ergebnis des Vergleichs: Da L[-1] direkt auf L verweist (sie sind dasselbe Objekt), 
+ist der Ausdruck L is L[-1] True.
+
+Zusätzliche Erläuterungen
+Unendliche Verschachtelung: In Python können Listen selbstreferenziell sein, d.h., sie können 
+sich selbst als Element enthalten. Dies führt jedoch nicht zu einer tatsächlich unendlichen Liste. 
+Vielmehr entsteht eine Art von Verschachtelung, bei der ein Element der Liste auf die Liste selbst verweist.
+
+Vermeidung von unendlicher Rekursion: Python handhabt die Ausgabe von selbstreferenziellen Listen intelligent, 
+um eine unendliche Rekursion zu vermeiden. Statt die Liste unendlich oft auszugeben, 
+wird die Selbstreferenz durch [...] symbolisiert.
+
+Objektidentität vs. Gleichheit: Der is-Operator überprüft die Identität, nicht die Gleichheit. 
+Zwei Variablen sind identisch, wenn sie auf dasselbe Objekt im Speicher verweisen. 
+In diesem Fall sind L und L[-1] identisch, da sie auf dasselbe Listenobjekt verweisen.
+Zusammengefasst zeigt dieser Code ein besonderes Verhalten von Listen in Python, 
+das Selbstreferenz und die Verwendung des is-Operators zur Überprüfung der Objektidentität umfasst.
+'''
+
 
 ###############
 #Lösung 5.4.a
@@ -487,15 +602,47 @@ def f(L1, L2):
 # Test der Funktion
 print(f([1, 2], [2, 3]))  # Sollte 9 zurückgeben
 
+#################
+#Erklärung 5.4.a
+#################
+'''
+Die Funktion f, wie sie im bereitgestellten Code definiert ist, berechnet die Summe der Potenzen
+von korrespondierenden Elementen zweier Listen gleicher Länge. 
+Hier ist eine detaillierte Erklärung des Codes:
+
+Funktion f
+Parameter
+L1, L2: Zwei Listen mit numerischen Werten. Es wird erwartet, dass beide Listen die gleiche Länge haben.
+Rückgabewert
+Die Funktion gibt eine einzelne Zahl zurück, die die Summe der Potenzen der korrespondierenden Elemente aus
+L1 und L2 darstellt.
+
+Funktionsweise
+
+Map-Funktion:
+map(lambda x, y: x**y, L1, L2): Die map-Funktion wendet eine angegebene Funktion (hier ein Lambda-Ausdruck) 
+auf jedes Element-Paar der beiden Listen L1 und L2 an.
+Der Lambda-Ausdruck lambda x, y: x**y nimmt ein Element x aus L1 und ein Element y 
+aus L2 und berechnet x hoch y.
+
+Summierung:
+sum(...): Die sum-Funktion berechnet die Gesamtsumme aller Werte, die von der map-Funktion zurückgegeben werden.
+Das bedeutet, dass für jedes Paar (x, y) aus L1 und L2 die Potenz x**y berechnet und zur Gesamtsumme addiert wird.
+
+Beispiel
+f([1, 2], [2, 3]):
+Für das erste Element-Paar (1, 2) wird 1^2 = 1 berechnet.
+Für das zweite Element-Paar (2, 3) wird 2^3 = 8 berechnet.
+Die Summe dieser Werte ist 1 + 8 = 9.
+
+Zusammenfassung
+Die Funktion f ist eine elegante und effiziente Art, die Summe der Potenzen von Paaren 
+korrespondierender Elemente aus zwei Listen zu berechnen. Sie ist besonders nützlich, 
+wenn man Operationen auf Paaren von Datenpunkten ausführen möchte, die in zwei separaten Listen gespeichert sind.
+'''
+
 ###############
-#Aufgabe 5.8.a:
-############### 
-#Beheben Sie das oben beschriebene Problem
-#Tipp: Ein einfacher Weg, dies zu tun, besteht darin, ein neues Buch zu erstellen, 
-#indem Sie etwas(?) an das ursprüngliche Buch anhängen.
-###############
-###############
-#Lösung Aufgabe 5.8.a:
+#Lösung 5.8.a:
 ############### 
 
 # Erweiterte gen_code_keys Funktion
@@ -514,56 +661,50 @@ plain_text = "Hello Cypher Punk"
 kodierungswörterbuch = gen_code_keys_erweitert(Don_Quixote, plain_text)
 print(kodierungswörterbuch)
 
+#################
+#Erklärung 5.8.a
+#################
+'''
+Der Codeausschnitt definiert eine Funktion gen_code_keys_erweitert, die zur Kodierung eines Textes dient, 
+basierend auf einem vorgegebenen "Buch" (Textgrundlage). Diese Funktion wird verwendet, 
+um eine einfache Form der Verschlüsselung durchzuführen. 
 
+Hier ist eine detaillierte Erklärung des Codes:
 
-###############
-#Aufgabe 5.8.b:
-############### 
-#Implementieren Sie anhand der obigen Beispiele encoder und encrypt
-#die Funktionen decoder und decrypt. Benutzen Sie diese dann, um die Nachricht
-# 22*13*33*155*59*11*23*11*1*57*6*13*1*2*6*57*2*6*1*22*13*33*155*59*11*23*11*1*57*6*209*7*11
-#zu entschlüsseln, die mit der Buch-Chiffre des Anfangs von Don Quijote (s.o.) verschlüsselt 
-#wurde.
-###############
+Funktion: gen_code_keys_erweitert
+Zweck: Erstellt ein Wörterbuch zur Verschlüsselung eines Textes (plain_text) basierend auf den Positionen 
+der Zeichen im gegebenen book.
 
-#Um die Funktionen `decoder` und `decrypt` zu implementieren,
-#  gehen wir ähnlich vor wie bei `encoder` und `encrypt`.
-#  Die `decoder`-Funktion nimmt das Dekodierungswörterbuch und
-#  den verschlüsselten Text (Cipher-Text) entgegen und gibt den
-#  entschlüsselten Text zurück. Die `decrypt`-Funktion erstellt
-#  zuerst das Dekodierungswörterbuch mit `gen_decode_keys` und
-#  verwendet dann `decoder`, um den Text zu entschlüsseln.
+Parameter:
+book: Ein String, der als Grundlage für die Verschlüsselung dient.
+plain_text: Der zu verschlüsselende Text.
+Funktionsablauf
+Erweiterung des Buches:
 
-#Hier sind die Implementierungen von `decoder` und `decrypt`:
+Das Buch (book) wird um ein spezielles Zeichen '#' am Ende erweitert. 
+Dies dient dazu, ein eindeutiges Ende des Buches zu markieren.
 
-def gen_decode_keys(book, cipher_text):
-    return {s: book[int(s)] for s in cipher_text.split('*') if s.isdigit()}
+Erstellung des Kodierungswörterbuchs:
 
-def decoder(decode_keys, cipher_text):
-    return ''.join([decode_keys.get(c, '') for c in cipher_text.split('*')])
+Für jedes Zeichen c im plain_text wird ein Eintrag im Wörterbuch erstellt.
+Wenn das Zeichen c im book vorhanden ist, wird der Index dieses Zeichens (seine Position im book) 
+als String gespeichert.
+Falls das Zeichen c nicht im book vorkommt, wird die Länge des book (ohne das zusätzliche '#') als 
+Ersatzwert verwendet.
+Das resultierende Wörterbuch bildet jeden Buchstaben des plain_text auf seine Position im book 
+oder auf die Länge des book ab.
+Beispiel
+Buch (Don_Quixote): Ein langer Textausschnitt, der als Grundlage für die Verschlüsselung dient.
+Zu verschlüsselnder Text (plain_text): "Hello Cypher Punk".
 
-def decrypt(book, cipher_text):
-    decode_keys = gen_decode_keys(book, cipher_text)
-    return decoder(decode_keys, cipher_text)
+Ausgabe (kodierungswörterbuch): Ein Wörterbuch, das jeden Buchstaben von "Hello Cypher Punk" 
+auf seine Position im Text von Don Quixote oder auf die Länge des Textes abbildet.
 
-# Test der Funktionen
-Don_Quixote = """In a village of La Mancha, the name of which I have no desire to call to mind, 
-                 there lived not long since one of those gentlemen that keep a lance in the 
-                 lance-rack, an old buckler, a lean hack, and a greyhound for coursing"""
-
-cipher_text = "22*13*33*155*59*11*23*11*1*57*6*13*1*2*6*57*2*6*1*22*13*33*155*59*11*23*11*1*57*6*209*7*11"
-decrypted_message = decrypt(Don_Quixote, cipher_text)
-print(decrypted_message)
-
-#In `gen_decode_keys` wird das Buch und der verschlüsselte Text verwendet,
-#  um ein Dekodierungswörterbuch zu erstellen.
-#  Jede Zahl im verschlüsselten Text wird durch das entsprechende Zeichen im Buch ersetzt. 
-# Die `decoder`-Funktion setzt dann diese Teile wieder zusammen,
-#  um den entschlüsselten Text zu erhalten. Schließlich verwendet `decrypt`
-#  diese beiden Funktionen, um den verschlüsselten Text zu entschlüsseln.
-
-#Wenn Sie diesen Code mit dem Anfang von Don Quijote und dem gegebenen 
-# verschlüsselten Text ausführen, erhalten Sie die entschlüsselte Nachricht.
+Anwendung
+Dieser Code kann in Kontexten verwendet werden, wo eine einfache Verschlüsselungsmethode benötigt wird, 
+etwa in einem Bildungs- oder Unterhaltungsszenario. Es ist jedoch wichtig zu beachten, dass diese Art 
+der Verschlüsselung nicht sicher für ernsthafte Anwendungen wie die Übertragung sensibler Daten ist.
+'''
 
 ###############
 # Lösung Aufgabe 5.8.b:
@@ -589,3 +730,49 @@ cipher_text = "22*13*33*155*59*11*23*11*1*57*6*13*1*2*6*57*2*6*1*22*13*33*155*59
 # Entschlüsseln des Textes
 decrypted_text = decrypt(Don_Quixote, cipher_text)
 print(decrypted_text)
+
+#################
+#Erklärung 5.8.b
+#################
+'''
+Funktion: decoder
+Zweck: Entschlüsselt einen gegebenen verschlüsselten Text (cipher_text) mithilfe eines Buches (book).
+
+Parameter:
+book: Der Text, der als Grundlage für die Erstellung des Dekodierungswörterbuchs dient.
+cipher_text: Der zu entschlüsselnde Text.
+Rückgabewert: Der entschlüsselte Text als Zeichenkette.
+Funktionsablauf
+Erstellung des Dekodierungswörterbuchs (decode_keys):
+
+Für jeden einzigartigen Buchstaben im Buch book wird ein Schlüssel-Wert-Paar im Wörterbuch erstellt.
+Der Schlüssel ist die Position des Buchstabens im Text book, konvertiert in einen String.
+Der Wert ist der Buchstabe selbst.
+Entschlüsselungsprozess:
+
+Der cipher_text wird anhand des Sternzeichens * in einzelne Codes zerlegt.
+Für jeden Code wird im Dekodierungswörterbuch nach dem entsprechenden Buchstaben gesucht.
+Die Buchstaben werden zusammengesetzt, um den entschlüsselten Text zu bilden.
+
+Funktion: decrypt
+Zweck: Einfache Wrapper-Funktion, die decoder aufruft, um den cipher_text zu entschlüsseln.
+Parameter:
+book: Der Text, der für die Dekodierung verwendet wird.
+cipher_text: Der zu entschlüsselnde Text.
+Rückgabewert: Der von decoder zurückgegebene entschlüsselte Text.
+Anwendungsbeispiel
+
+Vorbereitung: Der Text von „Don Quijote“ wird als book verwendet.
+Verschlüsselter Text (cipher_text): Eine Zeichenkette von durch Sternchen getrennten Zahlen, 
+die Positionen von Buchstaben im book repräsentieren.
+Durchführung: Der cipher_text wird durch die Funktion decrypt entschlüsselt.
+Ergebnis: Der entschlüsselte Text wird ausgegeben.
+
+Zusammenfassung
+Dieser Code demonstriert ein einfaches Verfahren zur Textentschlüsselung. 
+Es wird ein Buch (oder ein beliebiger Text) verwendet, um ein Dekodierungswörterbuch zu erstellen, 
+wobei jeder Buchstabe des Textes durch seine Position repräsentiert wird.
+Der verschlüsselte Text besteht aus einer Reihe von Zahlen, die den Positionen der Buchstaben 
+im Originaltext entsprechen. Durch das Umwandeln dieser Zahlen zurück in Buchstaben wird der 
+Originaltext rekonstruiert.
+'''
